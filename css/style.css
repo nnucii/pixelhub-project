@@ -1,0 +1,74 @@
+:root{
+  --fondo:#1b1340; --panel:#2a1d5e; --borde:#4a3a96;
+  --cian:#3fe0d0; --rosa:#ff4f8b; --amarillo:#ffd23f; --texto:#f2eefc; --suave:#b9b0e0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--fondo);color:var(--texto);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+h1,h2,h3{font-family:'Press Start 2P',monospace;line-height:1.4;font-weight:400}
+h1{font-size:clamp(1.4rem,4vw,2.4rem);color:var(--amarillo);text-shadow:4px 4px 0 var(--rosa)}
+h2{font-size:1.1rem;color:var(--cian);margin-bottom:1.2rem}
+h3{font-size:.8rem;margin-bottom:.6rem}
+a{color:var(--cian)}
+:focus-visible{outline:3px solid var(--amarillo);outline-offset:3px}
+
+header{background:var(--panel);border-bottom:4px solid var(--rosa);position:sticky;top:0;z-index:10}
+.barra{max-width:1000px;margin:auto;padding:.9rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-family:'Press Start 2P',monospace;font-size:.85rem;color:var(--amarillo);text-decoration:none}
+nav ul{display:flex;gap:.4rem;list-style:none}
+nav a{display:block;padding:.45rem .8rem;color:var(--texto);text-decoration:none;font-weight:700;border-radius:4px}
+nav a:hover{background:var(--borde)}
+nav a.activo{background:var(--rosa);color:#fff}
+#menu-btn{display:none;background:none;border:2px solid var(--cian);color:var(--cian);padding:.4rem .7rem;font-size:1.1rem;cursor:pointer;border-radius:4px}
+
+main{flex:1;max-width:1000px;width:100%;margin:auto;padding:2rem 1.2rem 3rem}
+section{margin-bottom:3rem}
+.lead{color:var(--suave);max-width:60ch;margin:1rem 0 1.5rem}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+#juego{background:#0f0a29;border:4px solid var(--cian);border-radius:8px;padding:1rem;box-shadow:8px 8px 0 var(--rosa)}
+.marcador{display:flex;justify-content:space-between;font-family:'Press Start 2P',monospace;font-size:.65rem;color:var(--amarillo);margin-bottom:.8rem}
+#campo{position:relative;height:240px;background:repeating-linear-gradient(0deg,#16103a 0 20px,#1b1344 20px 40px);border-radius:4px;overflow:hidden}
+#objetivo{position:absolute;width:44px;height:44px;border:none;border-radius:50%;background:var(--rosa);box-shadow:0 0 0 4px var(--amarillo);cursor:crosshair;display:none}
+#mensaje-juego{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;font-size:.9rem;color:var(--suave)}
+
+.boton{display:inline-block;font-family:'Press Start 2P',monospace;font-size:.7rem;background:var(--amarillo);color:#1b1340;border:none;padding:.9rem 1.2rem;border-radius:4px;cursor:pointer;text-decoration:none;box-shadow:4px 4px 0 var(--rosa)}
+.boton:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--rosa)}
+
+.rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.2rem}
+.tarjeta{background:var(--panel);border:2px solid var(--borde);border-radius:6px;padding:1.1rem}
+.tarjeta .genero{display:inline-block;background:var(--cian);color:#1b1340;font-size:.75rem;font-weight:800;padding:.1rem .6rem;border-radius:20px;margin-bottom:.6rem}
+.tarjeta p{color:var(--suave);font-size:.92rem}
+.tarjeta[hidden]{display:none}
+.tarjeta ul{padding-left:1.2rem;color:var(--suave);font-size:.92rem}
+.tarjeta li{margin-bottom:.3rem}
+
+.opciones{display:grid;gap:.7rem;margin:1rem 0}
+.opciones button{background:#0f0a29;color:var(--texto);border:2px solid var(--borde);padding:.8rem 1rem;border-radius:6px;font:inherit;font-weight:700;text-align:left;cursor:pointer}
+.opciones button:hover:not(:disabled){border-color:var(--cian)}
+.opciones button:disabled{cursor:default}
+.opciones button.correcta{background:var(--cian);color:#1b1340;border-color:var(--cian)}
+.opciones button.incorrecta{background:var(--rosa);color:#fff;border-color:var(--rosa)}
+
+.filtros{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.filtros button{background:transparent;color:var(--texto);border:2px solid var(--borde);padding:.4rem .9rem;border-radius:20px;font:inherit;font-weight:700;cursor:pointer}
+.filtros button.activo{background:var(--cian);color:#1b1340;border-color:var(--cian)}
+
+.linea{border-left:4px solid var(--rosa);padding-left:1.4rem;display:grid;gap:1.4rem}
+.hito .anio{font-family:'Press Start 2P',monospace;font-size:.7rem;color:var(--amarillo)}
+.hito p{color:var(--suave)}
+
+form{display:grid;gap:1rem;max-width:480px}
+label{font-weight:700}
+input,textarea,select{width:100%;padding:.7rem;background:#0f0a29;color:var(--texto);border:2px solid var(--borde);border-radius:4px;font:inherit}
+.error{color:var(--rosa);font-size:.88rem;min-height:1.2em}
+#respuesta{padding:1rem;border:2px solid var(--cian);border-radius:6px;display:none;max-width:480px}
+
+footer{background:var(--panel);border-top:4px solid var(--cian);text-align:center;padding:1.2rem;color:var(--suave);font-size:.9rem}
+
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr}
+  #menu-btn{display:block}
+  nav ul{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--panel);padding:.6rem 1.2rem 1rem;border-bottom:4px solid var(--rosa)}
+  nav ul.abierto{display:flex}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
