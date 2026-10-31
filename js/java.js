@@ -273,3 +273,5 @@
 
   mostrar();
 })();
+
+//Agregar animaciones al acercarse a los cuadros de información
