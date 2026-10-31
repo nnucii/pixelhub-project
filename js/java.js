@@ -64,27 +64,94 @@
   });
 })();
 
-// ===== Filtro de juegos (juegos.html) =====
+// ===== Biblioteca de juegos (juegos.html) =====
 (function () {
+  const catalogo = document.getElementById('catalogo');
+  if (!catalogo) return;
+
+  // Para agregar un juego, sumá una línea a esta lista.
+  const juegos = [
+    { id: 1,  nombre: 'Hollow Quest',    genero: 'Aventura',   desc: 'Explorá ruinas antiguas con combate preciso y mapas enormes.' },
+    { id: 2,  nombre: 'Turbo Drift',     genero: 'Carreras',   desc: 'Dominá los derrapes y competí en circuitos urbanos.' },
+    { id: 3,  nombre: 'Imperio Cero',    genero: 'Estrategia', desc: 'Construí tu civilización por turnos: diplomacia o guerra.' },
+    { id: 4,  nombre: 'Blade Rush',      genero: 'Acción',     desc: 'Combates veloces, combos y jefes de gran tamaño.' },
+    { id: 5,  nombre: 'Sombras del Faro', genero: 'Terror',    desc: 'Un faro abandonado, poca luz y mucho suspenso.' },
+    { id: 6,  nombre: 'Gol Total',       genero: 'Deportes',   desc: 'Fútbol arcade para jugar solo o con amigos.' },
+    { id: 7,  nombre: 'Isla Nube',       genero: 'Aventura',   desc: 'Viajá entre islas flotantes y descubrí sus secretos.' },
+    { id: 8,  nombre: 'Neon Circuit',    genero: 'Carreras',   desc: 'Carreras futuristas a toda velocidad con música electrónica.' },
+    { id: 9,  nombre: 'Torre y Mago',    genero: 'Estrategia', desc: 'Defendé tu torre con hechizos y trampas ingeniosas.' },
+    { id: 10, nombre: 'Pixel Brawl',     genero: 'Acción',     desc: 'Peleas arcade para hasta cuatro jugadores.' },
+    { id: 11, nombre: 'Noche en el Motel', genero: 'Terror',   desc: 'Sobreviví una noche y resolvé el misterio del motel.' },
+    { id: 12, nombre: 'Básquet Street',  genero: 'Deportes',   desc: 'Partidos 3 contra 3 en canchas callejeras.' }
+  ];
+
+  const buscador = document.getElementById('buscador');
   const filtros = document.getElementById('filtros');
-  if (!filtros) return;
-  const tarjetas = document.querySelectorAll('#catalogo .tarjeta');
+  const contador = document.getElementById('contador');
   const vacio = document.getElementById('vacio');
+
+  let genero = 'todos';
+  let favoritos = [];
+  try { favoritos = JSON.parse(localStorage.getItem('pixelhub-favoritos')) || []; } catch (e) {}
+
+  function guardar() {
+    try { localStorage.setItem('pixelhub-favoritos', JSON.stringify(favoritos)); } catch (e) {}
+  }
+
+  // Botones de filtro: Todos, Favoritos y un botón por cada género
+  const generos = ['todos', 'favoritos'].concat([...new Set(juegos.map(j => j.genero))]);
+  generos.forEach(g => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.dataset.filtro = g;
+    b.textContent = g === 'todos' ? 'Todos' : g === 'favoritos' ? '♥ Favoritos' : g;
+    if (g === 'todos') b.classList.add('activo');
+    filtros.appendChild(b);
+  });
+
+  function dibujar() {
+    const texto = buscador.value.trim().toLowerCase();
+    const lista = juegos.filter(j => {
+      const okGenero = genero === 'todos' || (genero === 'favoritos' ? favoritos.includes(j.id) : j.genero === genero);
+      const okTexto = !texto || (j.nombre + ' ' + j.genero + ' ' + j.desc).toLowerCase().includes(texto);
+      return okGenero && okTexto;
+    });
+
+    catalogo.innerHTML = '';
+    lista.forEach(j => {
+      const esFav = favoritos.includes(j.id);
+      const t = document.createElement('article');
+      t.className = 'tarjeta';
+      t.innerHTML =
+        '<span class="genero"></span>' +
+        '<button type="button" class="fav' + (esFav ? ' activo' : '') + '" aria-pressed="' + esFav + '" aria-label="Marcar favorito">' + (esFav ? '♥' : '♡') + '</button>' +
+        '<h3></h3><p></p>';
+      t.querySelector('.genero').textContent = j.genero;
+      t.querySelector('h3').textContent = j.nombre;
+      t.querySelector('p').textContent = j.desc;
+      t.querySelector('.fav').addEventListener('click', () => {
+        favoritos = esFav ? favoritos.filter(id => id !== j.id) : favoritos.concat(j.id);
+        guardar();
+        dibujar();
+      });
+      catalogo.appendChild(t);
+    });
+
+    contador.textContent = lista.length + ' de ' + juegos.length + ' juegos';
+    vacio.hidden = lista.length > 0;
+  }
 
   filtros.addEventListener('click', e => {
     const b = e.target.closest('button');
     if (!b) return;
     filtros.querySelectorAll('button').forEach(x => x.classList.remove('activo'));
     b.classList.add('activo');
-    const f = b.dataset.filtro;
-    let visibles = 0;
-    tarjetas.forEach(t => {
-      const mostrar = f === 'todos' || t.dataset.genero === f;
-      t.hidden = !mostrar;
-      if (mostrar) visibles++;
-    });
-    vacio.hidden = visibles > 0;
+    genero = b.dataset.filtro;
+    dibujar();
   });
+
+  buscador.addEventListener('input', dibujar);
+  dibujar();
 })();
 
 // ===== Validación del formulario (contacto.html) =====
