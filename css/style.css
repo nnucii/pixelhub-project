@@ -49,6 +49,11 @@ section{margin-bottom:3rem}
 .opciones button.correcta{background:var(--cian);color:#1b1340;border-color:var(--cian)}
 .opciones button.incorrecta{background:var(--rosa);color:#fff;border-color:var(--rosa)}
 
+#buscador{max-width:480px;margin-bottom:1.2rem}
+.tarjeta{position:relative}
+.fav{position:absolute;top:.7rem;right:.8rem;background:none;border:none;color:var(--suave);font-size:1.5rem;line-height:1;cursor:pointer}
+.fav:hover,.fav.activo{color:var(--rosa)}
+
 .filtros{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
 .filtros button{background:transparent;color:var(--texto);border:2px solid var(--borde);padding:.4rem .9rem;border-radius:20px;font:inherit;font-weight:700;cursor:pointer}
 .filtros button.activo{background:var(--cian);color:#1b1340;border-color:var(--cian)}
