@@ -70,6 +70,7 @@
   if (!catalogo) return;
 
   // Para agregar un juego, sumá una línea a esta lista.
+  // Nota: No funciona, ver por qué
   const juegos = [
     { id: 1,  nombre: 'Hollow Quest',    genero: 'Aventura',   desc: 'Explorá ruinas antiguas con combate preciso y mapas enormes.' },
     { id: 2,  nombre: 'Turbo Drift',     genero: 'Carreras',   desc: 'Dominá los derrapes y competí en circuitos urbanos.' },
