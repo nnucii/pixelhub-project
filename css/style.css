@@ -83,4 +83,6 @@ footer{background:var(--panel);border-top:4px solid var(--cian);text-align:cente
 }
 .consola{
   float:right;
+    margin-left: var(--ancho);
+  transition: margin-left 0.3s;
 }
