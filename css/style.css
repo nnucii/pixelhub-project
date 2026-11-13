@@ -78,9 +78,9 @@ footer{background:var(--panel);border-top:4px solid var(--cian);text-align:cente
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .juegos{
-    text-align: left;
+   
   
 }
 .consola{
-  text-align:center;
+  float:right;
 }
