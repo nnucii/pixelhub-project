@@ -34,9 +34,10 @@
       <span class="genero">Tu portal gamer</span>
       <h1>Jugá. Descubrí. Repetí.</h1>
       <p class="lead"> Pixel Hub reúne juegos que vale la pena probar, curiosidades, consejos y la historia de las consolas que los hicieron posibles. ¡Encontrá tu próxima aventura!</p>
-      <a class="boton" id="juegos" href="subpages/juegos.html">Ver juegos</a>
-
-      <a class="boton" id="consola" href="subpages/consolas.html">Explorar consolas</a>
+      <div class="botones">
+        <a class="boton" id="juegos" href="subpages/juegos.html">Ver juegos</a>
+        <a class="boton" id="consola" href="subpages/consolas.html">Explorar consolas</a>
+      </div>
     </div>
 
     <div id="juego" aria-label="Minijuego">
@@ -58,24 +59,24 @@
     <h2>Destacados de la semana</h2>
     <p class="lead">Una selección para descubrir nuevos mundos y desafíos.</p>
     <div class="rejilla">
-      <article class="tarjeta">
+      <a class="tarjeta" href="subpages/juegos.html">
         <span class="genero">Aventura</span>
         <h3>Hollow Quest</h3>
         <p>Explorá ruinas antiguas con combate preciso, secretos escondidos y mapas enormes.</p>
-        <a href="subpages/juegos.html">Ver más</a>
-      </article>
-      <article class="tarjeta">
+        <span class="mas">Ver más →</span>
+      </a>
+      <a class="tarjeta" href="subpages/juegos.html">
         <span class="genero">Carreras</span>
         <h3>Turbo Drift</h3>
         <p>Dominá los derrapes, mejorá tu vehículo y competí en circuitos urbanos.</p>
-        <a href="subpages/juegos.html">Ver más</a>
-      </article>
-      <article class="tarjeta">
+        <span class="mas">Ver más →</span>
+      </a>
+      <a class="tarjeta" href="subpages/juegos.html">
         <span class="genero">Estrategia</span>
         <h3>Imperio Cero</h3>
         <p>Construí tu civilización por turnos, administrá recursos y elegí entre diplomacia o guerra.</p>
-        <a href="subpages/juegos.html">Ver más</a>
-      </article>
+        <span class="mas">Ver más →</span>
+      </a>
     </div>
   </section>
 
@@ -84,30 +85,30 @@
     <h2>Explorá por género</h2>
     <p>Hay un juego para cada estilo. ¿Qué tipo de aventura tenés ganas de jugar?</p>
     <div class="rejilla">
-      <article class="tarjeta">
+      <a class="tarjeta" href="subpages/juegos.html?genero=Acción">
         <h3>⚔️ Acción</h3>
         <p>Combates rápidos, reflejos y desafíos intensos.</p>
-      </article>
-      <article class="tarjeta">
+      </a>
+      <a class="tarjeta" href="subpages/juegos.html?genero=Aventura">
         <h3>🗺️ Aventura</h3>
         <p>Historias, exploración y lugares secretos por descubrir.</p>
-      </article>
-      <article class="tarjeta">
+      </a>
+      <a class="tarjeta" href="subpages/juegos.html?genero=Carreras">
         <h3>🏎️ Carreras</h3>
         <p>Velocidad, vehículos y competencia contra el reloj.</p>
-      </article>
-      <article class="tarjeta">
+      </a>
+      <a class="tarjeta" href="subpages/juegos.html?genero=Estrategia">
         <h3>🧠 Estrategia</h3>
         <p>Planificá cada movimiento y tomá decisiones inteligentes.</p>
-      </article>
-      <article class="tarjeta">
+      </a>
+      <a class="tarjeta" href="subpages/juegos.html?genero=Terror">
         <h3>👻 Terror</h3>
         <p>Suspenso, misterio y experiencias para jugar con amigos.</p>
-      </article>
-      <article class="tarjeta">
+      </a>
+      <a class="tarjeta" href="subpages/juegos.html?genero=Deportes">
         <h3>⚽ Deportes</h3>
         <p>Fútbol, básquet y otros deportes en versión virtual.</p>
-      </article>
+      </a>
     </div>
   </section>
 
@@ -115,19 +116,21 @@
   <section>
     <h2>¿Dónde jugás?</h2>
     <div class="rejilla">
-      <article class="tarjeta">
+      <a class="tarjeta" href="subpages/consolas.html#pc">
         <h3>🖥️ PC Gamer</h3>
-        <p>Personalizá tu equipo, ajustá los gráficos y elegí entre una gran variedad de juegos.</p>
-      </article>
-      <article class="tarjeta">
+        <p>Gama de entrada, media o alta: elegí según tus juegos y tu presupuesto.</p>
+        <span class="mas">Ver gamas →</span>
+      </a>
+      <a class="tarjeta" href="subpages/consolas.html#consolas">
         <h3>🎮 Consolas</h3>
-        <p>Jugá desde el sillón, disfrutá de títulos exclusivos y compartí partidas locales.</p>
-        <a href="subpages/consolas.html">Conocer consolas</a>
-      </article>
-      <article class="tarjeta">
+        <p>Jugá desde el sillón y recorré la historia de las consolas más importantes.</p>
+        <span class="mas">Ver consolas →</span>
+      </a>
+      <a class="tarjeta" href="subpages/consolas.html#celulares">
         <h3>📱 Celulares</h3>
-        <p>Llevá tus partidas a cualquier lugar y aprovechá los juegos para dispositivos móviles.</p>
-      </article>
+        <p>Llevá tus partidas a todos lados. Conocé las gamas de teléfonos para jugar.</p>
+        <span class="mas">Ver gamas →</span>
+      </a>
     </div>
   </section>
 
@@ -135,23 +138,23 @@
   <section>
     <h2>Noticias y novedades</h2>
     <div class="rejilla">
-      <article class="tarjeta">
+      <a class="tarjeta" href="subpages/noticias.html">
         <span class="genero">Guías</span>
         <h3>Cómo elegir tu próximo juego</h3>
         <p>Tené en cuenta el género, el tiempo disponible, la plataforma y si preferís jugar solo o en equipo.</p>
-      </article>
-      <article class="tarjeta">
+      </a>
+      <a class="tarjeta" href="subpages/noticias.html">
         <span class="genero">Hardware</span>
         <h3>Mejorá tu espacio gamer</h3>
         <p>Una buena silla, iluminación cómoda y un escritorio ordenado pueden mejorar tu experiencia.</p>
-      </article>
-      <article class="tarjeta">
+      </a>
+      <a class="tarjeta" href="subpages/noticias.html">
         <span class="genero">Comunidad</span>
         <h3>Jugá en equipo</h3>
         <p>La comunicación, el respeto y la cooperación son claves para disfrutar los juegos multijugador.</p>
-      </article>
+      </a>
     </div>
-    <p><a class="boton" href="subpages/juegos.html">Ir a la sección de juegos</a></p>
+    <p class="cta-juegos"><a class="boton" href="subpages/juegos.html">Ir a la sección de juegos</a></p>
   </section>
 
   <!-- CONSEJOS -->
@@ -172,8 +175,10 @@
   <section class="tarjeta">
     <h2>¿Listo para la próxima partida?</h2>
     <p>Explorá nuestro catálogo, descubrí consolas y seguí armando tu camino gamer con Pixel Hub.</p>
-    <a class="boton" href="subpages/juegos.html">Empezar a explorar</a>
-    <a class="boton" href="subpages/contacto.html">Contactanos</a>
+    <div class="botones">
+      <a class="boton" href="subpages/juegos.html">Empezar a explorar</a>
+      <a class="boton" href="subpages/contacto.html">Contactanos</a>
+    </div>
   </section>
 </main>
 
