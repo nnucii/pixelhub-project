@@ -77,3 +77,7 @@ footer{background:var(--panel);border-top:4px solid var(--cian);text-align:cente
   nav ul.abierto{display:flex}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.juegos{
+    text-align: left;
+  
+}
