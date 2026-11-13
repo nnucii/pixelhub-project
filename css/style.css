@@ -81,3 +81,6 @@ footer{background:var(--panel);border-top:4px solid var(--cian);text-align:cente
     text-align: left;
   
 }
+.consola{
+  text-align:center;
+}
