@@ -1,6 +1,7 @@
 // ===== Menú y página activa =====
 (function () {
-  const pagina = location.pathname.split('/').pop() || 'index.html';
+  let pagina = location.pathname.split('/').pop() || 'index.html';
+  if (pagina.startsWith('noticia-')) pagina = 'noticias.html';
   document.querySelectorAll('nav a').forEach(a => {
     if (a.getAttribute('href') === pagina) a.classList.add('activo');
   });
@@ -71,20 +72,40 @@
 
   // Para agregar un juego, sumá una línea a esta lista.
   // Nota: No funciona, ver por qué
+  // En "video" pegá el link de embed de YouTube (https://www.youtube.com/embed/ID)
+  // o la ruta de un archivo .mp4 (por ej. '../video/hollow-quest.mp4').
+  // "nivel" define los requisitos: 'liviano', 'medio' o 'pesado'. "disco" son los GB necesarios.
   const juegos = [
-    { id: 1,  nombre: 'Hollow Quest',    genero: 'Aventura',   desc: 'Explorá ruinas antiguas con combate preciso y mapas enormes.' },
-    { id: 2,  nombre: 'Turbo Drift',     genero: 'Carreras',   desc: 'Dominá los derrapes y competí en circuitos urbanos.' },
-    { id: 3,  nombre: 'Imperio Cero',    genero: 'Estrategia', desc: 'Construí tu civilización por turnos: diplomacia o guerra.' },
-    { id: 4,  nombre: 'Blade Rush',      genero: 'Acción',     desc: 'Combates veloces, combos y jefes de gran tamaño.' },
-    { id: 5,  nombre: 'Sombras del Faro', genero: 'Terror',    desc: 'Un faro abandonado, poca luz y mucho suspenso.' },
-    { id: 6,  nombre: 'Gol Total',       genero: 'Deportes',   desc: 'Fútbol arcade para jugar solo o con amigos.' },
-    { id: 7,  nombre: 'Isla Nube',       genero: 'Aventura',   desc: 'Viajá entre islas flotantes y descubrí sus secretos.' },
-    { id: 8,  nombre: 'Neon Circuit',    genero: 'Carreras',   desc: 'Carreras futuristas a toda velocidad con música electrónica.' },
-    { id: 9,  nombre: 'Torre y Mago',    genero: 'Estrategia', desc: 'Defendé tu torre con hechizos y trampas ingeniosas.' },
-    { id: 10, nombre: 'Pixel Brawl',     genero: 'Acción',     desc: 'Peleas arcade para hasta cuatro jugadores.' },
-    { id: 11, nombre: 'Noche en el Motel', genero: 'Terror',   desc: 'Sobreviví una noche y resolvé el misterio del motel.' },
-    { id: 12, nombre: 'Básquet Street',  genero: 'Deportes',   desc: 'Partidos 3 contra 3 en canchas callejeras.' }
+    { id: 1,  nombre: 'Hollow Quest',    genero: 'Aventura',   nivel: 'medio',   disco: 25, video: '', desc: 'Explorá ruinas antiguas con combate preciso y mapas enormes.' },
+    { id: 2,  nombre: 'Turbo Drift',     genero: 'Carreras',   nivel: 'medio',   disco: 30, video: '', desc: 'Dominá los derrapes y competí en circuitos urbanos.' },
+    { id: 3,  nombre: 'Imperio Cero',    genero: 'Estrategia', nivel: 'liviano', disco: 15, video: '', desc: 'Construí tu civilización por turnos: diplomacia o guerra.' },
+    { id: 4,  nombre: 'Blade Rush',      genero: 'Acción',     nivel: 'medio',   disco: 35, video: '', desc: 'Combates veloces, combos y jefes de gran tamaño.' },
+    { id: 5,  nombre: 'Sombras del Faro', genero: 'Terror',    nivel: 'pesado',  disco: 40, video: '', desc: 'Un faro abandonado, poca luz y mucho suspenso.' },
+    { id: 6,  nombre: 'Gol Total',       genero: 'Deportes',   nivel: 'liviano', disco: 20, video: '', desc: 'Fútbol arcade para jugar solo o con amigos.' },
+    { id: 7,  nombre: 'Isla Nube',       genero: 'Aventura',   nivel: 'liviano', disco: 12, video: '', desc: 'Viajá entre islas flotantes y descubrí sus secretos.' },
+    { id: 8,  nombre: 'Neon Circuit',    genero: 'Carreras',   nivel: 'pesado',  disco: 45, video: '', desc: 'Carreras futuristas a toda velocidad con música electrónica.' },
+    { id: 9,  nombre: 'Torre y Mago',    genero: 'Estrategia', nivel: 'liviano', disco: 5,  video: '', desc: 'Defendé tu torre con hechizos y trampas ingeniosas.' },
+    { id: 10, nombre: 'Pixel Brawl',     genero: 'Acción',     nivel: 'liviano', disco: 3,  video: '', desc: 'Peleas arcade para hasta cuatro jugadores.' },
+    { id: 11, nombre: 'Noche en el Motel', genero: 'Terror',   nivel: 'medio',   disco: 18, video: '', desc: 'Sobreviví una noche y resolvé el misterio del motel.' },
+    { id: 12, nombre: 'Básquet Street',  genero: 'Deportes',   nivel: 'medio',   disco: 22, video: '', desc: 'Partidos 3 contra 3 en canchas callejeras.' }
   ];
+
+  // Requisitos del sistema según el nivel del juego
+  const REQ = {
+    liviano: {
+      min: ['Windows 10 (64 bits)', 'Procesador de 4 núcleos', '4 GB de RAM', 'Gráficos integrados'],
+      rec: ['Windows 10/11 (64 bits)', 'Procesador de 4 núcleos o más', '8 GB de RAM', 'Placa de video con 2 GB']
+    },
+    medio: {
+      min: ['Windows 10 (64 bits)', 'Procesador de 4 núcleos', '8 GB de RAM', 'Placa de video con 2 GB'],
+      rec: ['Windows 10/11 (64 bits)', 'Procesador de 6 núcleos', '16 GB de RAM', 'Placa de video con 6 GB']
+    },
+    pesado: {
+      min: ['Windows 10 (64 bits)', 'Procesador de 6 núcleos', '16 GB de RAM', 'Placa de video con 4 GB'],
+      rec: ['Windows 11 (64 bits)', 'Procesador de 8 núcleos', '16 GB de RAM o más', 'Placa de video con 8 GB']
+    }
+  };
+  const ETIQ = ['Sistema', 'Procesador', 'Memoria', 'Gráficos'];
 
   const buscador = document.getElementById('buscador');
   const filtros = document.getElementById('filtros');
@@ -110,6 +131,89 @@
     filtros.appendChild(b);
   });
 
+  // Si vienen de la portada con ?genero=Acción, se activa ese filtro
+  const pedido = new URLSearchParams(location.search).get('genero');
+  if (pedido && generos.includes(pedido)) {
+    genero = pedido;
+    filtros.querySelectorAll('button').forEach(b => b.classList.toggle('activo', b.dataset.filtro === pedido));
+  }
+
+  // ----- Ventana flotante con video y requisitos -----
+  const ventana = document.createElement('dialog');
+  ventana.className = 'ventana-juego';
+  ventana.setAttribute('aria-labelledby', 'vj-titulo');
+  ventana.innerHTML =
+    '<button type="button" class="cerrar" aria-label="Cerrar">✕</button>' +
+    '<div class="vj-cabecera"><span class="genero" id="vj-genero"></span><h2 id="vj-titulo"></h2><p id="vj-desc"></p></div>' +
+    '<div class="vj-cuerpo"><div class="vj-video" id="vj-video"></div><div class="vj-req" id="vj-req"></div></div>';
+  document.body.appendChild(ventana);
+
+  function lista(titulo, items, disco) {
+    const caja = document.createElement('div');
+    const h = document.createElement('h3');
+    h.textContent = titulo;
+    caja.appendChild(h);
+    const ul = document.createElement('ul');
+    items.concat(['Disco: ' + disco + ' GB libres']).forEach((t, i) => {
+      const li = document.createElement('li');
+      const b = document.createElement('b');
+      if (i < ETIQ.length) { b.textContent = ETIQ[i] + ': '; li.appendChild(b); }
+      li.appendChild(document.createTextNode(t));
+      ul.appendChild(li);
+    });
+    caja.appendChild(ul);
+    return caja;
+  }
+
+  function abrirVentana(j) {
+    ventana.querySelector('#vj-genero').textContent = j.genero;
+    ventana.querySelector('#vj-titulo').textContent = j.nombre;
+    ventana.querySelector('#vj-desc').textContent = j.desc;
+
+    const cajaVideo = ventana.querySelector('#vj-video');
+    cajaVideo.innerHTML = '';
+    if (j.video) {
+      let el;
+      if (/\.(mp4|webm)$/i.test(j.video)) {
+        el = document.createElement('video');
+        el.controls = true;
+        el.src = j.video;
+      } else {
+        el = document.createElement('iframe');
+        el.src = j.video;
+        el.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
+        el.allowFullscreen = true;
+      }
+      el.title = 'Gameplay de ' + j.nombre;
+      cajaVideo.appendChild(el);
+    } else {
+      const ph = document.createElement('div');
+      ph.className = 'vj-sinvideo';
+      ph.innerHTML = '<span>▶</span><p>Video de gameplay próximamente</p>';
+      cajaVideo.appendChild(ph);
+    }
+
+    const cajaReq = ventana.querySelector('#vj-req');
+    cajaReq.innerHTML = '';
+    const r = REQ[j.nivel];
+    const t = document.createElement('h2');
+    t.className = 'vj-titulo-req';
+    t.textContent = 'Requisitos del sistema';
+    cajaReq.appendChild(t);
+    cajaReq.appendChild(lista('Mínimos', r.min, j.disco));
+    cajaReq.appendChild(lista('Recomendados', r.rec, j.disco));
+    ventana.showModal();
+  }
+
+  function cerrarVentana() {
+    ventana.close();
+  }
+  // Al cerrar se vacía el video para que deje de sonar
+  ventana.addEventListener('close', () => { ventana.querySelector('#vj-video').innerHTML = ''; });
+  ventana.querySelector('.cerrar').addEventListener('click', cerrarVentana);
+  // Clic en el fondo oscuro = cerrar
+  ventana.addEventListener('click', e => { if (e.target === ventana) cerrarVentana(); });
+
   function dibujar() {
     const texto = buscador.value.trim().toLowerCase();
     const lista = juegos.filter(j => {
@@ -126,11 +230,19 @@
       t.innerHTML =
         '<span class="genero"></span>' +
         '<button type="button" class="fav' + (esFav ? ' activo' : '') + '" aria-pressed="' + esFav + '" aria-label="Marcar favorito">' + (esFav ? '♥' : '♡') + '</button>' +
-        '<h3></h3><p></p>';
+        '<h3></h3><p></p><span class="mas">Ver gameplay y requisitos ▶</span>';
+      t.tabIndex = 0;
+      t.setAttribute('role', 'button');
+      t.classList.add('clicable');
       t.querySelector('.genero').textContent = j.genero;
       t.querySelector('h3').textContent = j.nombre;
       t.querySelector('p').textContent = j.desc;
-      t.querySelector('.fav').addEventListener('click', () => {
+      t.addEventListener('click', () => abrirVentana(j));
+      t.addEventListener('keydown', e => {
+        if ((e.key === 'Enter' || e.key === ' ') && e.target === t) { e.preventDefault(); abrirVentana(j); }
+      });
+      t.querySelector('.fav').addEventListener('click', e => {
+        e.stopPropagation();
         favoritos = esFav ? favoritos.filter(id => id !== j.id) : favoritos.concat(j.id);
         guardar();
         dibujar();
@@ -274,4 +386,3 @@
   mostrar();
 })();
 
-//Agregar animaciones al acercarse a los cuadros de información
