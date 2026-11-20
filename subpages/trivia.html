@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trivia | Pixel Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="barra">
+    <a class="logo" href="../index.html">PIXEL HUB</a>
+    <button id="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav aria-label="Principal">
+      <ul id="menu">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="juegos.html">Juegos</a></li>
+        <li><a href="consolas.html">Consolas</a></li>
+        <li><a href="noticias.html">Noticias</a></li>
+        <li><a href="guias.html">Guías</a></li>
+        <li><a href="trivia.html">Trivia</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section>
+  <h1>Trivia gamer</h1>
+  <p class="lead">Seis preguntas para poner a prueba tus conocimientos.</p>
+  <div id="trivia" class="tarjeta">
+    <div class="marcador"><span id="t-progreso">Pregunta 1 de 6</span><span>Aciertos: <b id="t-puntos">0</b></span></div>
+    <h3 id="t-pregunta"></h3>
+    <div id="t-opciones" class="opciones"></div>
+    <p id="t-feedback" class="lead" role="status"></p>
+    <button class="boton" id="t-siguiente" hidden>Siguiente</button>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Pixel Hub. Hecho por y para jugadores.</footer>
+<script src="../js/java.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+Poné acá las imágenes de las consolas (formato .jpg) con estos nombres:
+
+atari-2600.jpg
+nes.jpg
+playstation.jpg
+wii.jpg
+switch.jpg
+
+Mientras no estén, la página muestra un cuadro con el nombre de la consola.
+Usá fotos propias o de licencia libre (por ejemplo Wikimedia Commons, citando el autor).
